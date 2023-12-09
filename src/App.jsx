@@ -9,11 +9,8 @@ import Hero from './pages/hero/hero'
 import NotFound from './pages/404/notfound'
 import Dashoard from './pages/dashboard/dashboard'
 import Layout from './components/layout/layout'
-
-const routes = [
-  { path: '/', element: <Hero /> },
-  { path: '/home', element: <Dashoard /> },
-];
+import Property from './pages/property/property'
+ 
 export default function App() {
   return (
     <>
@@ -22,6 +19,7 @@ export default function App() {
           <Route path="/" element={<Hero />} />
           <Route element={<Layout />}>
             <Route path="/home" element={<Dashoard />} />
+            <Route path="/property" element={<Property />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

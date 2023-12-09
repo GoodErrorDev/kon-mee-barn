@@ -1,16 +1,30 @@
 import React from "react";
 import './header.css';
+const { useLayoutEffect, useEffect, useState, useRef, useCallback } = React;
 const HeaderComponent = () => {
+    const ref = useRef();
+    let [check, setCheck] = useState(true);
+    const sticky = useStickyHeader(50);
+    const headerClasses = `navbar bg-base-100 header-style-custom header ${(sticky && check) ? 'sticky' : ''}`
+
     return (
         <>
-            <div className="navbar  header-style-custom">
+            <div ref={ref} className={headerClasses}>
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component" src="src/assets/logo.jpg" />
+                        </div>
+                    </div>
+                    <span className="ms-2 text-xl text-black">
+                        KON MEE BARN
+                    </span> 
+                    <div className="ms-10">
+                        <a className="link link-hover">ชื้อ</a>
+                        <a className="link link-hover ms-6">เช่า</a>
+                    </div>
                 </div>
                 <div className="flex-none gap-2">
-                    <div className="form-control">
-                        <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-                    </div>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -21,7 +35,6 @@ const HeaderComponent = () => {
                             <li>
                                 <a className="justify-between">
                                     Profile
-                                    <span className="badge">New</span>
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
@@ -33,6 +46,31 @@ const HeaderComponent = () => {
         </>
     )
 };
+
+
+function useStickyHeader(offset = 0) {
+    const [stick, setStick] = useState(false);
+    const [yaxis, setYaxis] = useState(0);
+
+    const handleScroll = useCallback((e) => {
+        if (yaxis > window.scrollY) {
+            setStick(true);
+        } else if (yaxis < window.scrollY) {
+            setStick(false);
+        }
+        setYaxis(window.scrollY)
+    });
+
+    useLayoutEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return (() => {
+            window.removeEventListener('scroll', handleScroll);
+        });
+    });
+
+    return stick;
+}
 
 
 export default HeaderComponent;

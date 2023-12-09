@@ -1,0 +1,8 @@
+
+.gallery-iayout{
+    display: flex ;
+    justify-content: center ;
+}
+.gallery{
+    width: 25% ;
+}
