@@ -9,3 +9,56 @@
     height: auto;
     cursor: pointer;
 }
+
+.grid-content-image {
+    height: 100%;
+    /* width: 280px; */
+}
+
+.main-image-content {
+    overflow: hidden;
+    width: 35vw;
+    height: 50vh;
+}
+
+.sub-image-content {
+    overflow: hidden;
+}
+
+.main-image{
+    height: 100%;
+    width: 100%;
+}
+
+.sub-image {
+
+    height: 4vw;
+    width: 7vw;
+}
+
+@media (max-width: 768px) {
+
+    .main-image-content,
+    .sub-image-content {
+        height: 20vh;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main-image-content {
+        height: 50vh;
+        width: 105vw;
+    }
+    
+
+    .sub-image {
+
+        height: 12vw;
+        width: 21vw;
+    }
+}
+
+.flex-item-sub-image {
+    justify-content: space-between;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import './header.css';
+import { Link } from "react-router-dom";
 const { useLayoutEffect, useEffect, useState, useRef, useCallback } = React;
 const HeaderComponent = () => {
     const ref = useRef();
@@ -11,16 +12,22 @@ const HeaderComponent = () => {
         <>
             <div ref={ref} className={headerClasses}>
                 <div className="flex-1">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="src/assets/logo.jpg" />
+                    <Link to="/home">
+                        <div className="logo">
+
+                            <div className=" avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src="src/assets/logo.jpg" />
+                                </div>
+                            </div>
+                            <span className="ms-2 text-xl text-black">
+                                KON MEE BARN
+                            </span>
                         </div>
-                    </div>
-                    <span className="ms-2 text-xl text-black">
-                        KON MEE BARN
-                    </span> 
+
+                    </Link>
                     <div className="ms-10">
-                        <a className="link link-hover">ชื้อ</a>
+                        <a className="link link-hover">ซื้อ</a>
                         <a className="link link-hover ms-6">เช่า</a>
                     </div>
                 </div>

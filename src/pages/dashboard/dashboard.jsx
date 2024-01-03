@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import './dashboard.css' 
- 
-export default function Dashoard() {
+import './dashboard.css'
+import GoogleMapComponent from '../../components/google-map/GoogleMap';
+import GoogleMapDirectionComponent from '../../components/google-map/GoogleMapDirection'; 
+
+export default function Dashoard() { 
+    
+  <script src="https://api.longdo.com/map/?key=058b5320a3293170ea824666185f14ae"></script> 
+    function init() {
+        map = new longdo.Map({
+          placeholder: document.getElementById('map')
+        });
+        map.location({ lon:100, lat:16 }, true); // go to 100, 16 when created map
+      }
     return (
-        <>  
+        <>
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
                 <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
                 <div className="card-body custom-card">
@@ -29,6 +39,8 @@ export default function Dashoard() {
                     </div>
                 </div>
             </div>
+            <div id="map" data-callback="init"></div>
+
             <Link to="/">
                 <button className="btn btn-primary">Home</button>
             </Link>

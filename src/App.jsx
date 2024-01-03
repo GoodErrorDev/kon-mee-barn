@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import FooterComponent from './components/footer/footer'
@@ -10,8 +10,9 @@ import NotFound from './pages/404/notfound'
 import Dashoard from './pages/dashboard/dashboard'
 import Layout from './components/layout/layout'
 import Property from './pages/property/property'
- 
+
 export default function App() {
+  
   return (
     <>
       <BrowserRouter>
