@@ -20,9 +20,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route element={<Layout />}>
-            <Route path="home" element={<Dashoard />} />
-            <Route path="property" element={<Property />} />
-            <Route path="property/select/:id" element={<PropertyDetail />} />
+            <Route path="/home" element={<Dashoard />} />
+            <Route path="/property" element={<Property />} />
+            <Route path="/property/select/:id" element={<PropertyDetail />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
