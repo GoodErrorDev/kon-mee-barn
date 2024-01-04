@@ -14,7 +14,7 @@ export default function Property() {
         contentList.push({
             title: 'title ' + index,
             content: 'content ' + index,
-            image_url: 'url' + index
+            image_url: index+1
         });
     }
 
@@ -29,6 +29,5 @@ export default function Property() {
                 ))}
             </div>
         </div>
-        
     )
 }

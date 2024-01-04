@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./gallery.css";
 import Modal from "../modal/modal";
-import { getImageUrl } from "../StoreImageService/firebaseStorageImageService"; 
-function Gallery() {
-    const [imageUrl, setImageUrl] = useState(null); 
-    const [loading, setLoading] = useState(true);
-    const [imagePath, setImagePath] = useState('images/real-estate-images/rest-20240104/1.jpg'); 
-
+function Gallery(props) {
+    const [imageUrl, setImageUrl] = useState(null);
+    const [loading, setLoading] = useState(null); 
     const [modalOpen, setModalOpen] = useState(false);
     const [currentImage, setCurrentImage] = useState("");
     const images = [{
@@ -48,30 +45,17 @@ function Gallery() {
     },
     ];
 
-    const openModal = (imageUrl) => {
-        console.log("Opening modal with image:", imageUrl); // Debugging
+    const openModal = (imageUrl) => { 
         setCurrentImage(imageUrl);
         setModalOpen(true);
         document.getElementById('my_modal_1').showModal();
     };
-
     useEffect(() => {
-        const fetchImage = async () => {
-            try {
-                const url = await getImageUrl(imagePath);
-                setImageUrl(url);
-                console.log(imageUrl);
-            } catch (error) {
-                console.error('Error loading image', error);
-            } finally {
-                
-                setLoading(false);
-            }
-        };
+        setImageUrl(props.imageUrl);
+        setLoading(props.loading);
+    } );
+ 
 
-        fetchImage();
-    }, [imagePath]);
-     
     return (
         <div>
 
