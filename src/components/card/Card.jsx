@@ -15,9 +15,9 @@ export default function Card(props) {
     }
     return (
         <>
-            <div className="card card-compact  bg-base-100 shadow-xl mt-4 p-2 card-hover card-layout" onClick={PropertySelect}>
+            <div className="card card-compact  bg-base-100 shadow-xl mt-4 p-2 card-hover card-layout">
                 <figure><Gallery /></figure>
-                <div className="card-body ">
+                <div className="card-body " onClick={PropertySelect}>
                     <h2 className="card-title ">{title}</h2>
                     <p>Click the button to watch on Jetflix app. {content}</p>
                     <p>Click the button to watch on Jetflix app. {image}</p>

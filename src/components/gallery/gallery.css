@@ -62,3 +62,6 @@
 .flex-item-sub-image {
     justify-content: space-between;
 }
+.image-false{
+    display: none;
+}

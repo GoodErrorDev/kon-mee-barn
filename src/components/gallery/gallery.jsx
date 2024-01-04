@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./gallery.css";
 import Modal from "../modal/modal";
-
+import { getImageUrl } from "../StoreImageService/firebaseStorageImageService"; 
 function Gallery() {
+    const [imageUrl, setImageUrl] = useState(null); 
+    const [loading, setLoading] = useState(true);
+    const [imagePath, setImagePath] = useState('images/real-estate-images/rest-20240104/1.jpg'); 
+
     const [modalOpen, setModalOpen] = useState(false);
     const [currentImage, setCurrentImage] = useState("");
     const images = [{
@@ -51,17 +55,34 @@ function Gallery() {
         document.getElementById('my_modal_1').showModal();
     };
 
+    useEffect(() => {
+        const fetchImage = async () => {
+            try {
+                const url = await getImageUrl(imagePath);
+                setImageUrl(url);
+                console.log(imageUrl);
+            } catch (error) {
+                console.error('Error loading image', error);
+            } finally {
+                
+                setLoading(false);
+            }
+        };
+
+        fetchImage();
+    }, [imagePath]);
+     
     return (
         <div>
 
-            <div className="grid gap-1 grid-content-image">
-                <div className="main-image-content col-12">
+            <div className={`grid gap-1 grid-content-image ${(loading) ? 'skeleton ' : ''}`}>
+                <div className="main-image-content col-12" >
                     {
                         images.filter(element => element.image_type === 'main').map((element, index) => (
                             <img
                                 key={index}
-                                className="main-image rounded-md"
-                                src={element.image_url}
+                                className={`main-image rounded-md ${(loading) ? 'image-false ' : ''}`}
+                                src={imageUrl}
                                 alt="Main Image" />
                         ))
                     }
