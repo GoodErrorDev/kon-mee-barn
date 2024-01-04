@@ -54,8 +54,7 @@ function Gallery(props) {
     console.log(props.imagePath); 
 
     return (
-        <div>
-
+        <div> 
             <div className={`grid gap-1 grid-content-image ${(loading) ? 'skeleton ' : ''}`}>
                 <div className="main-image-content col-12" >
                     {
