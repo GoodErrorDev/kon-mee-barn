@@ -17,7 +17,7 @@ const HeaderComponent = () => {
 
                             <div className=" avatar">
                                 <div className="w-10 rounded-full">
-                                    <img alt="Tailwind CSS Navbar component" src="src/assets/logo.jpg" />
+                                    <img alt="Tailwind CSS Navbar component" src="https://firebasestorage.googleapis.com/v0/b/kon-mee-barn.appspot.com/o/images%2Flogo%2Flogo.jpg?alt=media&token=85f19ac6-5a99-4953-81bc-d5212711fb40" />
                                 </div>
                             </div>
                             <span className="ms-2 text-xl text-black">

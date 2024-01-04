@@ -10,17 +10,19 @@ import NotFound from './pages/404/notfound'
 import Dashoard from './pages/dashboard/dashboard'
 import Layout from './components/layout/layout'
 import Property from './pages/property/property'
+import PropertyDetail from './pages/property-detail/property-detail'
 
 export default function App() {
-  
+
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route element={<Layout />}>
-            <Route path="/home" element={<Dashoard />} />
-            <Route path="/property" element={<Property />} />
+            <Route path="home" element={<Dashoard />} />
+            <Route path="property" element={<Property />} />
+            <Route path="property/select/:id" element={<PropertyDetail />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
