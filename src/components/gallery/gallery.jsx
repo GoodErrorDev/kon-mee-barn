@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./gallery.css";
 import Modal from "../modal/modal";
-function Gallery(props) {
-    const [imageUrl, setImageUrl] = useState(null);
-    const [loading, setLoading] = useState(null); 
+import LazyImage from "../lazyImage/lazyImage";
+function Gallery(props) { 
+    const [loading, setLoading] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [currentImage, setCurrentImage] = useState("");
     const images = [{
@@ -45,16 +45,13 @@ function Gallery(props) {
     },
     ];
 
-    const openModal = (imageUrl) => { 
-        setCurrentImage(imageUrl);
+    const openModal = (imagePath) => {
+        setCurrentImage(imagePath);
         setModalOpen(true);
         document.getElementById('my_modal_1').showModal();
     };
-    useEffect(() => {
-        setImageUrl(props.imageUrl);
-        setLoading(props.loading);
-    } );
- 
+   
+    console.log(props.imagePath); 
 
     return (
         <div>
@@ -63,10 +60,11 @@ function Gallery(props) {
                 <div className="main-image-content col-12" >
                     {
                         images.filter(element => element.image_type === 'main').map((element, index) => (
-                            <img
+                            <LazyImage
+                                className={'main-image'}
                                 key={index}
-                                className={`main-image rounded-md ${(loading) ? 'image-false ' : ''}`}
-                                src={imageUrl}
+                                imagePath={props.imagePath}
+                                loading={loading}
                                 alt="Main Image" />
                         ))
                     }

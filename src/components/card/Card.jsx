@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Gallery from '../gallery/gallery';
 import './Card.css'
-import { Link, useNavigate } from 'react-router-dom';
-import { getImageUrl } from "../StoreImageService/firebaseStorageImageService";
+import { Link, useNavigate } from 'react-router-dom'; 
 export default function Card(props) {
     const [title, setTitle] = useState(props.title);
     const [content, setContent] = useState(props.content);
-    const [image, setImage] = useState(props.image_url);
-
-    const [imageUrl, setImageUrl] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [image, setImage] = useState(props.image_url);  
     console.log(title);
     console.log((image%10) );
     const [imagePath, setImagePath] = useState('images/real-estate-images/rest-20240104/' + (image%10 == 0 ? 1: image%10) + '.jpg');
@@ -20,27 +16,12 @@ export default function Card(props) {
     const PropertySelect = () => {
         console.log(title);
         navigate('select/{id}');
-    };
-    const fetchImage = async () => {
-        try {
-            if (imagePath != null) {
-                const url = await getImageUrl(imagePath);
-                setImageUrl(url);
-            }
-        } catch (error) {
-            console.error('Error loading image', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    useEffect(() => {
-        fetchImage();
-    }, [imagePath]);
+    };  
 
     return (
         <>
             <div className="card card-compact  bg-base-100 shadow-xl mt-4 p-2 card-hover card-layout">
-                <figure><Gallery imageUrl={imageUrl} loading={loading} /></figure>
+                <figure><Gallery imagePath={imagePath} /></figure>
                 <div className="card-body " onClick={PropertySelect}>
                     <h2 className="card-title ">{title}</h2>
                     <p>Click the button to watch on Jetflix app. {content}</p>
