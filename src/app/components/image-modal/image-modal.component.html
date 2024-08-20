@@ -1,0 +1,9 @@
+<div class="modal-content">
+    <img [src]="data.images[currentIndex]" alt="Gallery Image" class="modal-image">
+    <div class="controls">
+      <button mat-button (click)="previousImage()" [disabled]="currentIndex === 0">Previous</button>
+      <button mat-button (click)="nextImage()" [disabled]="currentIndex === data.images.length - 1">Next</button>
+    </div>
+    <button mat-button (click)="onClose()">Close</button>
+  </div>
+  

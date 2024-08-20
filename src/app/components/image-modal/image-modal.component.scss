@@ -1,0 +1,28 @@
+.modal-content {
+    text-align: center;
+  }
+  
+  .modal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .controls {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .cdk-overlay-pane {
+    z-index: 1050 !important; /* Higher than the top bar */
+  }
+  
+  .mat-dialog-container {
+    z-index: 1050 !important;
+  }.modal-content {
+    position: relative;
+    z-index: 1050; /* Ensure it's higher than the top bar */
+  }
+  
+  

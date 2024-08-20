@@ -1,0 +1,9 @@
+aside.main-sidebar {
+    overflow: hidden; /* Prevents both vertical and horizontal scroll bars */
+    height: 100vh; /* Ensures the sidebar takes up the full viewport height */
+    z-index: auto;
+  }
+  
+  .content-wrapper{
+    min-height: auto!important;
+  }
