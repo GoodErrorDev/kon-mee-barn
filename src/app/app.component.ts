@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "./layout/footer/footer.component";
@@ -14,4 +14,22 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 })
 export class AppComponent {
   title = 'kon-mee-barn';
+   hideNavbar = false;
+  private lastScrollTop = 0;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > this.lastScrollTop) {
+      // เลื่อนลง
+      this.hideNavbar = true;
+    } else {
+      // เลื่อนขึ้น
+      this.hideNavbar = false;
+    }
+
+    this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // ป้องกัน scrollTop เป็นค่าลบ
+  }
+
 }

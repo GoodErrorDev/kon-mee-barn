@@ -1,4 +1,12 @@
 .main-header {
-    z-index: auto;
-  }
-  
+  z-index: auto;
+}
+
+.navbar {
+  border-bottom: 1px solid #000000;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}

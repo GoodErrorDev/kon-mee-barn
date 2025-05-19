@@ -1,0 +1,86 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+  <div class="d-flex flex-column">
+    <!-- First Row -->
+    <div class="row col-12">
+      <!-- Search -->
+      <div class=" ">
+        <label for="query" class="">Search Properties</label>
+        <div class="">
+          <input type="text" id="query" formControlName="query" placeholder="Search by keywords..." class=""
+            aria-label="Search properties" />
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="">
+        <label for="location" class="">Location</label>
+        <input type="text" id="location" formControlName="location" placeholder="Enter city or area"
+          class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+      </div>
+
+      <!-- Property Type -->
+      <div class="">
+        <label for="type" class="">Property Type</label>
+        <ng-select [items]="Property_type" bindLabel="name" placeholder="Select city">
+        </ng-select>
+      </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row col-12">
+      <!-- Bedrooms -->
+      <div class="">
+        <label for="bedrooms" class="">Bedrooms</label>
+        <select id="bedrooms" formControlName="bedrooms" class="">
+          <option value="0">Any</option>
+          <option value="1">1+ Bedroom</option>
+          <option value="2">2+ Bedrooms</option>
+          <option value="3">3+ Bedrooms</option>
+          <option value="4">4+ Bedrooms</option>
+          <option value="5">5+ Bedrooms</option>
+        </select>
+      </div>
+
+      <!-- Bathrooms -->
+      <div class="">
+        <label for="bathrooms" class="">Bathrooms</label>
+        <select id="bathrooms" formControlName="bathrooms" class="">
+          <option value="0">Any</option>
+          <option value="1">1+ Bathroom</option>
+          <option value="2">2+ Bathrooms</option>
+          <option value="3">3+ Bathrooms</option>
+          <option value="4">4+ Bathrooms</option>
+        </select>
+      </div>
+
+      <!-- Price Range -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">Price Range</label>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+
+          </span>
+        </div>
+        <div class="range-slider">
+ 
+        </div>
+ <ngx-slider
+      [(value)]="value"
+      [options]="options">
+    </ngx-slider>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between">
+        <div class="col-6">
+          <button type="button" class="btn btn-block btn-default">Apply Filters</button>
+        </div>
+        <div class="col-6">
+          <button type="button" class="btn btn-block btn-default">Clear all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

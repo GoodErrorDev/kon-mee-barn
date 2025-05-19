@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageModalComponent } from '../../components/image-modal/image-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PropertyFilterComponent } from '../../components/filter/property-filter.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,PropertyFilterComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -15,17 +16,17 @@ export class DashboardComponent {
     title: `Item ${i + 1}`,
     category: `category${(i % 3) + 1}`,
     images: [
-      `https://via.placeholder.com/150?text=Image+${i + 1}+A`,
-      `https://via.placeholder.com/150?text=Image+${i + 1}+B`,
-      `https://via.placeholder.com/150?text=Image+${i + 1}+C`,
-      `https://via.placeholder.com/150?text=Image+${i + 1}+D`,
-      `https://via.placeholder.com/150?text=Image+${i + 1}+E`,
+      `https://placehold.co/150`,
+      `https://placehold.co/150`,
+      `https://placehold.co/150`,
+      `https://placehold.co/150`,
+      `https://placehold.co/150`,
     ]
   }));
   isGridLayout = false; // Default to column layout
 
   currentPage = 1;
-  itemsPerPage = 20;
+  itemsPerPage = 12;
   filteredItems = [...this.items]; // Initially show all items
   isLoading = false;
   constructor(private dialog: MatDialog) {
@@ -70,6 +71,13 @@ export class DashboardComponent {
       this.filteredItems = this.items.filter(item => item.category === filterValue);
     } 
     this.setPage(1); // Reapply loading animation
+  }
+  filters: any = {};  // ตัวแปรที่ใช้เก็บข้อมูล
+
+  onFilterChanged(filters: any) {
+    this.filters = filters;  // รับข้อมูลจาก child component
+    console.log(this.filters);
+    console.log('Filters received in dashboard:', this.filters);
   }
 
 }
