@@ -1,6 +1,5 @@
  <div class="dashboard-container">
-    <div class="filter-section col-12">
-        <h3>Filter</h3>
+    <div class="filter-section col-12 filter-custom"> 
         <div class="filter-control"> 
             <app-property-filter (filterChanged)="onFilterChanged($event)"></app-property-filter>
 
@@ -14,8 +13,9 @@
                         [alt]="'Gallery image ' + (i + 1) + '.' + (imgIndex + 1)"
                         (click)="openImageModal(item.images, imgIndex)">
                 </div>
-                <h5 class="card-title">{{ item.title }}</h5>
-                <p class="card-text">This is item number {{ i + 1 }}.</p>
+                <span class="card-title">{{ item.title }}</span>
+                <span class="card-text">This is item number {{ i + 1 }}.</span>
+               <span class="font-custom-location">location,location2</span>
             </div>
         </div>
     </div>

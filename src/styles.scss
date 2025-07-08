@@ -1,9 +1,132 @@
-@import 'bootstrap/dist/css/bootstrap.min.css'; 
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$kon-mee-barn-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($kon-mee-barn-theme);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($kon-mee-barn-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($kon-mee-barn-theme);
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import "@ng-select/ng-select/themes/default.theme.css";
 
 
 
 
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/// slider ngx-slider
+/* styles.scss */
+
+// ngx-slider {
+//     .ngx-slider-bar {
+//         background-color: #d0f0d0 !important;
+//         height: 6px;
+//         border-radius: 4px;
+//     }
+
+//     .ngx-slider-selection {
+//         background-color: #91e691 !important;
+//         height: 6px;
+//         border-radius: 4px;
+//     }
+
+//     .ngx-slider-pointer {
+//         width: 15px !important;
+//         height: 15px !important;
+//         background-color: #6cd96c !important;
+//         border: none;
+//         border-radius: 50%;
+//         box-shadow: none !important;
+//         outline: none !important;
+//         /* ลดเงาให้เล็กลง */
+//         top: -5px !important;
+//         /* ปรับให้ pointer อยู่ตรงกลาง track */
+//     }
+
+//     &:active,
+//     &:focus,
+//     &:hover {
+//         outline: none !important;
+//         box-shadow: none !important;
+//     }
+
+//     .ngx-slider-pointer:focus {
+//         outline: none;
+//         box-shadow: 0 0 6px rgba(0, 128, 0, 0.4);
+//     }
+
+//     .ngx-slider-bubble {
+//         color: #3e7d3e;
+//         background-color: #e8fbe8;
+//         padding: 2px 6px;
+//         border-radius: 4px;
+//         font-size: 12px;
+//         top: -30px;
+//         font-weight: 500;
+//     }
+
+//     .ngx-slider-tick {
+//         background-color: #c8ecc8 !important;
+//         height: 4px;
+//         width: 4px;
+//         border-radius: 50%;
+//     }
+
+//     .ngx-slider-tick-selected {
+//         background-color: #64c864 !important;
+//     }
+
+//     .ngx-slider-tick-value {
+//         font-size: 11px;
+//         color: #3a7a3a;
+//         top: -5px !important;
+//     }
+// }
+
+/// 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.btn-custom-1{
+    border: 1px solid #cecece75; 
+    width: 100%;
+}

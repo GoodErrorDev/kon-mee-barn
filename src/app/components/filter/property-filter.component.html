@@ -1,37 +1,47 @@
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-  <div class="d-flex flex-column">
-    <!-- First Row -->
-    <div class="row col-12">
-      <!-- Search -->
-      <div class=" ">
-        <label for="query" class="">Search Properties</label>
-        <div class="">
-          <input type="text" id="query" formControlName="query" placeholder="Search by keywords..." class=""
-            aria-label="Search properties" />
-        </div>
-      </div>
-
-      <!-- Location -->
-      <div class="">
-        <label for="location" class="">Location</label>
-        <input type="text" id="location" formControlName="location" placeholder="Enter city or area"
-          class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
-      </div>
-
-      <!-- Property Type -->
-      <div class="">
-        <label for="type" class="">Property Type</label>
-        <ng-select [items]="Property_type" bindLabel="name" placeholder="Select city">
-        </ng-select>
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="container">
+    <!-- Search -->
+    <div class="form-group row mb-3">
+      <label for="query" class="col-sm-2 col-form-label">Search</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" formControlName="KEYWORDS" placeholder="Search by keywords..." />
       </div>
     </div>
 
-    <!-- Second Row -->
-    <div class="row col-12">
-      <!-- Bedrooms -->
-      <div class="">
-        <label for="bedrooms" class="">Bedrooms</label>
-        <select id="bedrooms" formControlName="bedrooms" class="">
+    <!-- Location (Province, District, Subdistrict) -->
+    <div class="form-group row mb-3">
+      <label class="col-sm-2 col-form-label">Location</label>
+      <div class="col-sm-10">
+        <ng-select [items]="provinces" bindLabel="provinceNameTh" bindValue="id" [ngStyle]="{ width: '100%' }"
+          (change)="onProvinceChange($event)" placeholder="เลือกจังหวัด" [searchable]="true" [clearable]="true"
+          formControlName="PROVIND">
+        </ng-select>
+
+        <div class="mt-2">
+          <ng-select [items]="filteredDistricts" bindLabel="districtNameTh" bindValue="id"
+            (change)="onDistrictChange($event)" placeholder="เลือกอำเภอ" [searchable]="true" [clearable]="true"
+            formControlName="DISTRICT">
+          </ng-select>
+        </div>
+
+        <div class="mt-2">
+          <ng-select [items]="filteredSubdistricts" bindLabel="subdistrictNameTh" bindValue="id" placeholder="เลือกตำบล"
+            [searchable]="true" [clearable]="true" formControlName="SUBDISTRICT">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Type, Bedrooms, Bathrooms -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="type">Property Type</label>
+        <ng-select [items]="Property_type" bindLabel="key" bindValue="value" placeholder="Select type"  formControlName="PROPERTY_TYPE">
+        </ng-select>
+      </div>
+      <div class="col-md-4">
+        <label for="bedrooms">Bedrooms</label>
+        <select id="bedrooms" formControlName="BEDROOM" class="form-control" placeholder="จำนวนห้องนอน" >
           <option value="0">Any</option>
           <option value="1">1+ Bedroom</option>
           <option value="2">2+ Bedrooms</option>
@@ -40,11 +50,9 @@
           <option value="5">5+ Bedrooms</option>
         </select>
       </div>
-
-      <!-- Bathrooms -->
-      <div class="">
-        <label for="bathrooms" class="">Bathrooms</label>
-        <select id="bathrooms" formControlName="bathrooms" class="">
+      <div class="col-md-4">
+        <label for="bathrooms">Bathrooms</label>
+        <select id="bathrooms" formControlName="BATHROOM" class="form-control" placeholder="จำนวนห้องน้ำ">
           <option value="0">Any</option>
           <option value="1">1+ Bathroom</option>
           <option value="2">2+ Bathrooms</option>
@@ -52,34 +60,27 @@
           <option value="4">4+ Bathrooms</option>
         </select>
       </div>
+    </div>
 
-      <!-- Price Range -->
-      <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700">Price Range</label>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+    <!-- Price Range -->
 
-          </span>
-        </div>
-        <div class="range-slider">
- 
-        </div>
- <ngx-slider
-      [(value)]="value"
-      [options]="options">
-    </ngx-slider>
+    <div class="row mb-3">
+      <label for="query" class="col-md-4 col-form-label">Price Range</label>
+      <div class="col-md-3">
+        <input class="form-control" type="text" formControlName="PRICE_MIN" placeholder="Min price" />
+      </div> <label for="query" class="col-1 col-form-label">-</label>
+      <div class="col-md-3">
+        <input class="form-control" type="text" formControlName="PRICE_MAX" placeholder="Max price" />
       </div>
     </div>
 
     <!-- Action Buttons -->
-    <div class="row">
-      <div class="col-12 d-flex justify-content-between">
-        <div class="col-6">
-          <button type="button" class="btn btn-block btn-default">Apply Filters</button>
-        </div>
-        <div class="col-6">
-          <button type="button" class="btn btn-block btn-default">Clear all</button>
-        </div>
+    <div class="form-group row">
+      <div class="col-6">
+        <button type="submit" class="btn btn-primary w-100"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search</button>
+      </div>
+      <div class="col-6">
+        <button type="button" class="btn btn-secondary w-100" (click)="onClear()">Clear</button>
       </div>
     </div>
   </div>

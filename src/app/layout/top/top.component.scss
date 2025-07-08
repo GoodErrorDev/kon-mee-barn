@@ -3,10 +3,13 @@
 }
 
 .navbar {
-  border-bottom: 1px solid #000000;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-nav {
   display: flex;
   align-items: center;
+} 
+.navbar-custom{
+  background-color: rgb(255, 255, 255);
 }

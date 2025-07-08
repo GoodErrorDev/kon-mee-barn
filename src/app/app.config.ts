@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select'; 
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { provideHttpClient } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -15,7 +16,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       ReactiveFormsModule,
       NgSelectModule,
-      NgxSliderModule
-    )
+      NgxSliderModule,
+    ), provideAnimationsAsync(),
+    provideHttpClient()
   ]
 };
