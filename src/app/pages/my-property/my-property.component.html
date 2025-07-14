@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-6">
+            <h3>My Properties</h3>
+        </div>
+        <div class="col-6 text-right">
+            <input type="button" class="btn btn-primary" [routerLink]="['/property/add']" value="Add New Property" />
+        </div>
+    </div>
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of properties; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                    <img *ngIf="p.images?.length" [src]="apiUrl+p.images[0]" class="img-thumbnail"
+                        style="height: 60px;" />
+                </td>
+                <td>{{ p.title }}</td>
+                <td>{{ p.price | currency: 'THB' }}</td>
+                <td>
+                    <span class="badge" [ngClass]="{
+              'bg-success': p.status === 'Y',
+              'bg-secondary': p.status !== 'Y'
+            }">
+                        {{ p.status === 'Y' ? 'Active' : 'Inactive' }}
+                    </span>
+                </td>
+                <td>{{ p.created_at | date: 'short' }}</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" [routerLink]="['/property', p.id]">
+                        <i class="bi bi-eye"></i> View
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="properties.length === 0" class="text-center text-muted mt-4">
+        No properties found.
+    </div>
+</div>

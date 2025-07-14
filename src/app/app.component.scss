@@ -1,17 +1,20 @@
-aside.main-sidebar {
-    overflow: hidden; /* Prevents both vertical and horizontal scroll bars */
-    height: 100vh; /* Ensures the sidebar takes up the full viewport height */
-    z-index: auto;
-  }
-   
-
-  app-top {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out;
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
-app-top.hide-on-scroll {
-  transform: translateY(-100%);
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1; /* ทำให้ส่วน content ดัน footer ลงล่าง */
+}
+
+app-footer {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
 }

@@ -13,9 +13,28 @@ export class TopComponent implements OnInit {
 
   isAdmin: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
+  }
+  onClickOption(option: string) {
+    switch (option) {
+      case 'proprety':
+        // Navigate to the property page
+        window.location.href = '/my-property';
+        break;
+      case 'profile':
+        // Navigate to the profile page
+        window.location.href = '/profile';
+        break;
+      case 'setting':
+        // Navigate to the settings page
+        window.location.href = '/settings';
+        break;
+      default:
+        console.warn('Unknown option:', option);
+    }
+
   }
 }

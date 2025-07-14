@@ -1,0 +1,135 @@
+<div class="container mt-4">
+  <div class="images-content">
+    <div id="carouselExampleCaptions" class="carousel slide  " data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li *ngFor="let img of propertyView.images; let i = index" [attr.data-slide-to]="i" [class.active]="i === 0"
+          data-target="#carouselExampleCaptions">
+        </li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div *ngFor="let img of propertyView.images; let i = index" class="carousel-item" [class.active]="i === 0">
+          <img [src]="img.url" class="carousel-image" alt="Property Image">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ img.title }}</h5>
+            <p>{{ propertyView.description }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <a class="carousel-control-prev carousel-control" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next carousel-control" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  </div>
+  <!-- 🔽 ข้อมูลรายละเอียดอยู่ด้านล่าง -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- 🔶 Property Summary Card -->
+      <div class="card shadow-lg mb-4">
+        <div class="card-body">
+          <h2 class="card-title mb-2">{{ propertyView.title }}</h2>
+
+          <p class="card-text text-muted mb-2">
+            <i class="bi bi-geo-alt-fill"></i>
+            {{ propertyView.address }}
+            <span *ngIf="propertyView.subdistrict">, {{ propertyView.subdistrict }}</span>
+            <span *ngIf="propertyView.district">, {{ propertyView.district }}</span>
+            <span *ngIf="propertyView.province">, {{ propertyView.province }}</span>
+          </p>
+
+          <h4 class="text-success mb-3">
+            <i class="bi bi-cash-stack"></i>
+            {{ propertyView.price | currency:'THB' }}
+          </h4>
+
+          <div class="mb-3">
+            <span class="badge bg-info me-2">
+              {{ propertyView.propertyType || 'House' }}
+            </span>
+            <span class="badge bg-secondary me-2">
+              {{ propertyView.status || 'For Sale' }}
+            </span>
+            <span class="badge bg-light text-dark">
+              {{ propertyView.yearBuilt ? 'Built: ' + propertyView.yearBuilt : '' }}
+            </span>
+          </div>
+
+          <ul class="list-group mb-3">
+            <li class="list-group-item">
+              <i class="bi bi-door-closed"></i>
+              <strong>Bedrooms:</strong> {{ propertyView.bedrooms }}
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-bathtub"></i>
+              <strong>Bathrooms:</strong> {{ propertyView.bathrooms }}
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-aspect-ratio"></i>
+              <strong>Area:</strong> {{ propertyView.area }} m²
+            </li>
+            <li class="list-group-item" *ngIf="propertyView.facilities?.length">
+              <i class="bi bi-stars"></i>
+              <strong>Facilities:</strong> {{ propertyView.facilities.join(', ') }}
+            </li>
+            <li class="list-group-item" *ngIf="propertyView.location">
+              <i class="bi bi-map"></i>
+              <strong>Location:</strong> {{ propertyView.location }}
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- 🔶 Description -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Description</h5>
+          <p class="card-text">{{ propertyView.description }}</p>
+        </div>
+      </div>
+
+      <!-- 🔶 Map -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Location Map</h5>
+          <div *ngIf="propertyView?.mapUrl"> 
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7771.596094652553!2d100.92941116435566!3d13.111976555035913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sth!4v1752494932497!5m2!1sen!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div *ngIf="!propertyView?.mapUrl" class="text-muted">
+            No map available.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ✅ Sidebar: Agent Profile + Buttons -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body text-center">
+          <!-- 🔶 Agent Profile -->
+          <img [src]="agent.imageUrl" alt="Agent Photo" class="rounded-circle mb-3"
+            style="width: 100px; height: 100px;">
+          <h5>{{ agent.name }}</h5>
+
+
+          <!-- 🔶 Contact Buttons -->
+          <button class="btn btn-primary w-100 mb-2">
+            <i class="bi bi-envelope"></i> Contact Agent
+          </button>
+          <button class="btn btn-outline-secondary w-100">
+            <i class="bi bi-share"></i> Share Property
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

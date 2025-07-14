@@ -35,10 +35,11 @@ export class PropertyFilterComponent {
 
   isBrowser: boolean;
   @Output() filterChanged = new EventEmitter<any>(); // สร้าง EventEmitter สำหรับส่งข้อมูล
-  Property_type = [{ 'key': 'All', 'value': 'All' }, { 'key': 'House', 'value': 'House' }, { 'key': 'Apartment', 'value': 'Apartment' }, { 'key': 'Condo', 'value': 'Condo' }, { 'key': 'Land', 'value': 'Land' }];
   provinces: Province[] = [];
   allDistricts: District[] = [];
   allSubdistricts: Subdistrict[] = [];
+  Property_type = [{ 'key': 'All', 'value': 'All' }, { 'key': 'House', 'value': 'House' }, { 'key': 'Apartment', 'value': 'Apartment' }, { 'key': 'Condo', 'value': 'Condo' }, { 'key': 'Land', 'value': 'Land' }];
+  
 
   filteredDistricts: District[] = [];
   filteredSubdistricts: Subdistrict[] = [];

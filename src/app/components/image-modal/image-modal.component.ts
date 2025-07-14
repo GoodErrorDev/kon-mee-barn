@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { imageModel } from '../../pages/property/proprtty.model';
 
 @Component({
   selector: 'app-image-modal',
@@ -11,7 +12,7 @@ export class ImageModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ImageModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { images: string[], initialIndex: number }
+    @Inject(MAT_DIALOG_DATA) public data: { images: imageModel[], initialIndex: number }
   ) {
     this.currentIndex = data.initialIndex;
   }

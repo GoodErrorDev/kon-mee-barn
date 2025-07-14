@@ -1,21 +1,20 @@
- <div class="dashboard-container">
-    <div class="filter-section col-12 filter-custom"> 
-        <div class="filter-control"> 
+<div class="dashboard-container">
+    <div class="filter-section col-12 filter-custom">
+        <div class="filter-control">
             <app-property-filter (filterChanged)="onFilterChanged($event)"></app-property-filter>
-
         </div>
     </div>
     <div class="row card-container-grid" [ngClass]="{ 'loading': isLoading, 'loaded': !isLoading}">
-        <div class="card" *ngFor="let item of paginatedItems; let i = index">
+        <div class="card" *ngFor="let item of paginatedItems; let i = index" (click)="onClick(item)">
             <div class="card-body">
                 <div class="gallery">
-                    <img *ngFor="let img of item.images; let imgIndex = index" [src]="img"
+                    <img *ngFor="let img of item.images; let imgIndex = index" [src]="img.url"
                         [alt]="'Gallery image ' + (i + 1) + '.' + (imgIndex + 1)"
-                        (click)="openImageModal(item.images, imgIndex)">
+                        (click)="openImageModal(item.images, imgIndex); $event.stopPropagation()">
                 </div>
                 <span class="card-title">{{ item.title }}</span>
                 <span class="card-text">This is item number {{ i + 1 }}.</span>
-               <span class="font-custom-location">location,location2</span>
+                <span class="font-custom-location">location,location2</span>
             </div>
         </div>
     </div>

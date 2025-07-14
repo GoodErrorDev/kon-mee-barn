@@ -1,0 +1,192 @@
+<div class="container mt-4 mb-4">
+    <form [formGroup]="propertyForm" (ngSubmit)="submit()">
+        <div class="row">
+            <!-- 🔵 LEFT: Property Form -->
+            <div class="col-md-8">
+                <h3>Add New Property</h3>
+
+                <!-- Title -->
+                <div class="mb-3">
+                    <label>Title <span class="text-danger">*</span></label>
+                    <input formControlName="title" class="form-control"
+                        [ngClass]="{ 'is-invalid': propertyForm.get('title')?.touched && propertyForm.get('title')?.invalid }" />
+                    <div class="invalid-feedback"
+                        *ngIf="propertyForm.get('title')?.touched && propertyForm.get('title')?.hasError('required')">
+                        Title is required.
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label>Description</label>
+                    <textarea formControlName="description" class="form-control"></textarea>
+                </div>
+
+                <!-- Price & Year -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Price <span class="text-danger">*</span></label>
+                        <input formControlName="price" type="number" class="form-control"
+                            [ngClass]="{ 'is-invalid': propertyForm.get('price')?.touched && propertyForm.get('price')?.invalid }" />
+                        <div class="invalid-feedback"
+                            *ngIf="propertyForm.get('price')?.touched && propertyForm.get('price')?.hasError('required')">
+                            Price is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Year Built</label>
+                        <input formControlName="yearBuilt" type="text" class="form-control" />
+                    </div>
+                </div>
+
+                <!-- Bedrooms & Bathrooms -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Bedrooms</label>
+                        <input formControlName="bedrooms" type="number" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Bathrooms</label>
+                        <input formControlName="bathrooms" type="number" class="form-control" />
+                    </div>
+                </div>
+
+                <!-- Property Type -->
+                <div class="mb-3">
+                    <label>Property Type <span class="text-danger">*</span></label>
+                    <ng-select [items]="propertyTypeOption" bindLabel="key" bindValue="value"
+                        [ngStyle]="{ width: '100%' }" placeholder="Property Type" multiple="true" [searchable]="true"
+                        [clearable]="true" formControlName="propertyType"
+                        [ngClass]="{ 'is-invalid': propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.invalid }">
+                    </ng-select>
+                    <div class="invalid-feedback"
+                        *ngIf="propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.hasError('required')">
+                        Property Type is required.
+                    </div>
+                </div>
+
+                <!-- Area -->
+                <div class="mb-3">
+                    <label>Area (m²) <span class="text-danger">*</span></label>
+                    <input formControlName="area" type="number" class="form-control"
+                        [ngClass]="{ 'is-invalid': propertyForm.get('area')?.touched && propertyForm.get('area')?.invalid }" />
+                    <div class="invalid-feedback"
+                        *ngIf="propertyForm.get('area')?.touched && propertyForm.get('area')?.hasError('required')">
+                        Area is required.
+                    </div>
+                </div>
+
+                <!-- Address Section -->
+                <h5 class="mt-4">Address <span class="text-danger">*</span></h5>
+
+                <div class="mb-2">
+                    <input formControlName="address" placeholder="Address" class="form-control"
+                        [ngClass]="{ 'is-invalid': propertyForm.get('address')?.touched && propertyForm.get('address')?.invalid }" />
+                    <div class="invalid-feedback"
+                        *ngIf="propertyForm.get('address')?.touched && propertyForm.get('address')?.hasError('required')">
+                        Address is required.
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-md-4 mb-2">
+                        <ng-select [items]="provinces" bindLabel="provinceNameTh" bindValue="id"
+                            [ngStyle]="{ width: '100%' }" (change)="onProvinceChange($event)" placeholder="เลือกจังหวัด"
+                            [searchable]="true" [clearable]="true" formControlName="province"
+                            [ngClass]="{ 'is-invalid': propertyForm.get('province')?.touched && propertyForm.get('province')?.invalid }">
+                        </ng-select>
+
+                        <div class="invalid-feedback"
+                            *ngIf="propertyForm.get('province')?.touched && propertyForm.get('province')?.hasError('required')">
+                            Province is required.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <ng-select [items]="filteredDistricts" bindLabel="districtNameTh" bindValue="id"
+                            [ngStyle]="{ width: '100%' }" (change)="onDistrictChange($event)" placeholder="เลือกอำเภอ"
+                            [searchable]="true" [clearable]="true" formControlName="district"
+                            [ngClass]="{ 'is-invalid': propertyForm.get('district')?.touched && propertyForm.get('district')?.invalid }">
+                        </ng-select>
+
+                        <div class="invalid-feedback"
+                            *ngIf="propertyForm.get('district')?.touched && propertyForm.get('district')?.hasError('required')">
+                            District is required.
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 mb-2">
+                        <ng-select [items]="filteredSubdistricts" bindLabel="subdistrictNameTh" bindValue="id"
+                            [ngStyle]="{ width: '100%' }" placeholder="เลือกตำบล" [searchable]="true" [clearable]="true"
+                            formControlName="subdistrict"
+                            [ngClass]="{ 'is-invalid': propertyForm.get('subdistrict')?.touched && propertyForm.get('subdistrict')?.invalid }">
+                        </ng-select>
+                        <div class="invalid-feedback"
+                            *ngIf="propertyForm.get('subdistrict')?.touched && propertyForm.get('subdistrict')?.hasError('required')">
+                            Subdistrict is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label>Post address <span class="text-danger">*</span></label>
+                    <input formControlName="postaddress" class="form-control"
+                        [ngClass]="{ 'is-invalid': propertyForm.get('postaddress')?.touched && propertyForm.get('postaddress')?.invalid }" />
+                    <div class="invalid-feedback"
+                        *ngIf="propertyForm.get('postaddress')?.touched && propertyForm.get('postaddress')?.hasError('required')">
+                        Post address is required.
+                    </div>
+                </div>
+                <!-- Map URL -->
+                <div class="mb-3">
+                    <label>Map URL <span class="text-danger">*</span></label>
+                    <input formControlName="mapUrl" class="form-control"
+                        [ngClass]="{ 'is-invalid': propertyForm.get('mapUrl')?.touched && propertyForm.get('mapUrl')?.invalid }" />
+                    <div class="invalid-feedback"
+                        *ngIf="propertyForm.get('mapUrl')?.touched && propertyForm.get('mapUrl')?.hasError('required')">
+                        Map URL is required.
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="mb-3">
+                    <label>Location Label</label>
+                    <input formControlName="location" class="form-control" />
+                </div>
+
+                <!-- Facilities -->
+                <h5 class="mt-4">Facilities</h5>
+                <div formArrayName="facilities">
+                    <div *ngFor="let facility of facilities.controls; let i = index" class="mb-2">
+                        <input [formControlName]="i" placeholder="Facility" class="form-control" />
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="addFacility()">+ Add
+                        Facility</button>
+                </div>
+            </div>
+
+            <!-- 🟢 RIGHT: Image Upload -->
+            <div class="col-md-4">
+                <h5 class="mt-4">Images</h5>
+
+                <!-- 🔵 input เดียวแต่เลือกได้หลายภาพ -->
+                <div class="mb-3">
+                    <input type="file" multiple (change)="onMultipleFilesSelected($event)" class="form-control" />
+                </div>
+
+                <!-- 🔽 แสดงรูปแบบ 3 คอลัมน์ (ภายใน col-12 ของฝั่งขวา) -->
+                <div formArrayName="images" class="row row-cols-3 g-2">
+                    <div *ngFor="let image of images.controls; let i = index" [formGroupName]="i" class="col on-hover"
+                        [ngClass]="{ 'on-click': image.value.main_image }" (click)="setMainImage(i)">
+                        <img [src]="image.value.url" class="img-thumbnail mb-1"
+                            style="height: 100px; width: 100%; object-fit: cover;" />
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success mt-4">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

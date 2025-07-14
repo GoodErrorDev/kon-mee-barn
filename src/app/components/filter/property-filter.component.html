@@ -41,24 +41,11 @@
       </div>
       <div class="col-md-4">
         <label for="bedrooms">Bedrooms</label>
-        <select id="bedrooms" formControlName="BEDROOM" class="form-control" placeholder="จำนวนห้องนอน" >
-          <option value="0">Any</option>
-          <option value="1">1+ Bedroom</option>
-          <option value="2">2+ Bedrooms</option>
-          <option value="3">3+ Bedrooms</option>
-          <option value="4">4+ Bedrooms</option>
-          <option value="5">5+ Bedrooms</option>
-        </select>
+        <input type="number" min="0" formControlName="BEDROOM" class="form-control" placeholder="จำนวนห้องนอน" /> 
       </div>
       <div class="col-md-4">
         <label for="bathrooms">Bathrooms</label>
-        <select id="bathrooms" formControlName="BATHROOM" class="form-control" placeholder="จำนวนห้องน้ำ">
-          <option value="0">Any</option>
-          <option value="1">1+ Bathroom</option>
-          <option value="2">2+ Bathrooms</option>
-          <option value="3">3+ Bathrooms</option>
-          <option value="4">4+ Bathrooms</option>
-        </select>
+        <input type="nunber" min="0" formControlName="BATHROOM" class="form-control" placeholder="จำนวนห้องน้ำ" />
       </div>
     </div>
 
